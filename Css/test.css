@@ -32,3 +32,25 @@
     background-color: blue;
     height: 0.2px;
 }
+
+/*for the Digital Clock*/
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(135deg, #1d2b64, #f8cdda);
+    font-family: 'Arial', sans-serif;
+}
+
+.clock {
+    font-size: 5rem;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px 40px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    font-weight: bold;
+}
