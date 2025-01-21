@@ -1,4 +1,4 @@
-//Clock
+/*//Clock
 //initializing variables
 const hour = document.querySelector(".Clock-hourhand");
 const min = document.querySelector(".Clock-minhand");
@@ -112,33 +112,70 @@ secSub.addEventListener("click", () => {
 
 setInterval(realTime, 1000);
 updateClock(customHours, customMinutes, customSeconds);
+*/
+
+const hour = document.querySelector(".Clock-hourhand");
+const min = document.querySelector(".Clock-minhand");
+const sec = document.querySelector(".Clock-sechand");
 
 
+function updateClock(){
+  const current = new Date();
 
-/*const trailing = document.createElement("img");
-trailing.src = "https://i.pinimg.com/564x/2b/ca/d6/2bcad6870b9318b3085ec6c7643fbb14.jpg";
-trailing.style.position = "absolute";
-trailing.style.width = "30px";
-trailing.style.height = "30px";
-trailing.style.opacity = "0.2px";
-trailing.style.transition = "transform 0.2s ease";
+  const hours = current.getHours();
+  const minutes = current.getMinutes();
+  const seconds = current.getSeconds();
 
-//cursor movement
-const movement = {x:0, y:0};
-document.addEventListener("mousemovement", (e) => {
-  mousemovement.x = e.clientX;
-  mousemovement.y = y.clientY;
+  //calculating the clock
+  let secondsRotation = 6 * seconds;
+  let minutesRotation = 6 * minutes + 0.1 * seconds;
+  let hourRotation = 30 * (hours % 12) + 0.5 * minutes; 
+
+  //the clock hands rotations
+  sec.style.transform = (seconds, `rotate(${secondsRotation}deg)`);
+  min.style.transform = (minutes,`rotate(${minutesRotation}deg)`);
+  console.log(minutesRotation);
+  hour.style.transform = (hours, `rotate(${hourRotation}deg)`);
+}
+
+const secAdd = document.getElementById("secondsAdd");
+const secSub = document.getElementById("secondsSubtract");
+const minAdd = document.getElementById("minutesAdd");
+const minSub = document.getElementById("minutesSubtract");
+const hourAdd = document.getElementById("hoursAdd");
+const hourSub = document.getElementById("hoursSubtract");
+
+let customHours = 1;
+let customMinutes = 0; 
+let customSeconds = 0;
+
+/*if(customMinutes >= 60){
+  customMinutes = 0;
+  customHours++;
+}*/
+
+minAdd.addEventListener("click", () => {
+  customMinutes = customMinutes + 1;
+  console.log(customMinutes);
+  min.style.transform = (minutes, `rotate(${customMinutes})deg`);
+  updateClock(customHours, customMinutes, customSeconds);
 });
 
-let currentTrailElement = 0;
-//update
-function print(){
-  const rect = move.getBoundingClientRect();
+setInterval(updateClock, 1000);
+updateClock(customHours, customMinutes, customSeconds);
 
-  let x = movement.x - rect.left;
-  let y = movement.y - rect.top;
+//Digital Clock
+//initializing
+const hrs = document.getElementById("hours");
+const mins = document.getElementById("minutes");
+const secs = document.getElementById("seconds");
 
-  move = trailElement[currentTrailElement];
-  trailing.style.transform = "translate(${event.clientX}px, ${event.clientY}px)";
-  currentTrailElement = (currentTrailElement + 1);
-}*/
+function digitalClockUpdate(){
+  const current = new Date();
+                    //if it's not less than 10, then it will not print any string
+  hours.innerHTML = (current.getHours() < 10 ? "0" : "") + current.getHours();
+  minutes.innerHTML = (current.getMinutes() < 10 ? "0" : "") + current.getMinutes();
+  seconds.innerHTML = (current.getSeconds() < 10 ? "0" : "") + current.getSeconds();
+  //console.log(current);
+}
+setInterval(digitalClockUpdate, 1000);
